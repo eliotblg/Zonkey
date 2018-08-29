@@ -1,7 +1,7 @@
 import os
 import imp
 import numpy as np
-from chemsys import Chemsys
+from . chemsys import Chemsys
 
 listofmmcodes = ['namd']
 

@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from chemsys import Chemsys
+#from . chemsys import Chemsys
 ##import constant
 # TODO use restart file with checkpoints
 

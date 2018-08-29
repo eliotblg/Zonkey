@@ -2,7 +2,7 @@ import os
 import re
 import imp
 import numpy as np
-from chemsys import Chemsys
+#from chemsys import Chemsys
 
 srcdir = os.path.dirname(os.path.abspath(__file__))
 manipsf = imp.load_source('manipulatepsf', srcdir + \
