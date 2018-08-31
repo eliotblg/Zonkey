@@ -1,3 +1,3 @@
 
-__all__ = ['binaryfiles', 'manipulatepdb', 'manipulatepsf', 'readfile']
+__all__ = ['binaryfiles', 'manipulatepdb', 'manipulatepsf', 'readfile', 'printfile']
 

@@ -3,6 +3,7 @@ import nlopt
 import numpy as np
 import imp
 from . utils import manipulatepdb
+from . utils import printfile
 
 class Geopt(object):
     def __init__(self, ofunction, algorithm='LD_LBFGS'):
@@ -77,8 +78,10 @@ class Geopt(object):
         e = self.opt.last_optimum_value()
         print('Energy after optimization: ' + "%20.10f"%(e) + ' Hartrees')
         coords = self.c
-        manipulatepdb.changecoordinates(coords.zkfile, list(range(coords.natoms)),\
-                                coords.coords, newfile='opt.pdb')
+        manipulatepdb.changecoordinates(coords.infile, list(range(coords.natoms)),\
+                                coords.coords, newfile=coords.infile[0:-4] + '-opt.pdb')
+        printfile.printxyz(coords.coords, coords.atypes, \
+                           coords.infile[0:-4] + '-opt.xyz')
 
     def getactivearray(self, coords):
         x = np.array([])
