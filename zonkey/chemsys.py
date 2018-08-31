@@ -21,10 +21,7 @@ class Chemsys(object):
             self.nbonds = 0
             self.infile = None
         else:
-            zkfile = 'zk-' + coordfile
-            copyfile(coordfile, zkfile)
             self.infile = coordfile
-            self.zkfile = zkfile
             self.readcoordfile(coordfile)
         self.qmenergy  = None
         self.mmenergy  = None
