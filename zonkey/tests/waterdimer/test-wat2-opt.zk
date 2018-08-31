@@ -1,0 +1,16 @@
+nproc 4
+memory 4
+
+coordinates wat2.pdb 
+
+qmlist [ 0, 1, 2 ] 
+
+mmcode namd
+mmstruct wat2.psf
+mmparam [ ions.prm ]
+
+qmcode gaussian
+qmham BLYP 
+qmbasis SVP
+qmextra EmpiricalDispersion\=GD3
+activelist [ 0, 1, 2, 3, 4, 5 ]
