@@ -12,24 +12,28 @@ class QMMMinterface(object):
         self.eqm = 0.0
         self.eqmmm = 0.0
 
-    def energy(self, coords, printener=True):
-        self.emm = self.mm.energy(coords)
-        self.eqm = self.qm.energy(coords)
+    def energy(self, system, printener=True):
+        self.emm = self.mm.energy(system)
+        self.eqm = self.qm.energy(system)
         self.eqmmm = self.emm + self.eqm
-        coords.qmmenergy = self.eqmmm 
+        system.qmmenergy = self.eqmmm 
         if printener:
-            coords.printenergies()
+            system.printenergies()
         return self.eqmmm
 
-    def gradients(self, coords, printener=True):
-        self.emm, gmm = self.mm.gradients(coords)
-        self.eqm, gqm = self.qm.gradients(coords) 
+    def gradients(self, system, printener=True):
+        self.emm, gmm = self.mm.gradients(system)
+        self.eqm, gqm = self.qm.gradients(system) 
         self.eqmmm = self.emm + self.eqm
         gqmmm = gqm + gmm
-        coords.qmmmenergy = self.eqmmm
+        system.qmmmenergy = self.eqmmm
         if printener:
-            coords.printenergies()
+            system.printenergies()
         return self.eqmmm, gqmmm
+
+    def clean(self):
+        self.qm.clean()
+        self.mm.clean()
 
     def print__(self):
         print("QM/MM energies (Hartrees)")

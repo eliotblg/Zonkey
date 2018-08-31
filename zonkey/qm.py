@@ -1,9 +1,8 @@
 import os
 import imp
 import numpy as np
-from . chemsys import Chemsys
 
-listofqmcodes = ['gaussian']
+from . interfaces import *
 
 #
 # Generic interface to QM codes for QM/MM or pure QM computations 
@@ -27,7 +26,6 @@ class QMinterface(object):
         srcdir = os.path.dirname(os.path.abspath(__file__))
         self.qmmodule = imp.load_source(qmcode, \
                         srcdir + '/interfaces/' + qmcode + '.py')
-        # Check if environement for the QM module is set
         if not self.qmmodule.checkenvironment():
             self.qmmodule.setupenvironment(epath, spath)
 
@@ -61,4 +59,11 @@ class QMinterface(object):
                                                self.name, val='gradients')
         coords.qmenergy = ener
         return ener, grad
+
+    def clean(self):
+        self.qmmodule.clean(['energy-' + self.name, 'gradients-' + self.name])
+
+
+
+
 

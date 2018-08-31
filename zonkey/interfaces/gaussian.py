@@ -161,3 +161,19 @@ def extractdata(coords, jfile='jf', val='energy'):
     grad = np.array(grad) * -1.0
     return energy, grad
 
+def clean(filetodelete):
+    extensions = ['.log', '.com', '.chk']
+    for f in filetodelete:
+        for e in extensions:
+            if os.path.isfile(f + e):
+                os.remove(f + e)
+    for f in os.listdir():
+        if f[0:4] == 'fort' and f.split('.')[-1].isdigit():
+            os.remove(f)
+            
+
+
+
+
+
+

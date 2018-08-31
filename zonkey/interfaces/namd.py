@@ -158,4 +158,25 @@ def extractdata(coords, jfile='jf', val='energy'):
                 i += 1
         return e, g
 
+def clean(nametodelete, structurefile):
+    extensions = ['.log', '-namdforces.txt', '-namd.out.xsc', '-namd.out.vel', '-namd.out.coor', \
+                  '-namd.out.xsc.BAK', '-namd.out.vel.BAK', '-namd.out.coor.BAK', '.conf']
+    filestodelete = ['zonkey.bin.coor', 'newtypes.prm']
+    if structurefile[0:5] == 'qmmm-':
+        filestodelete.append(structurefile)
+    for f in nametodelete:
+        for e in extensions:
+            filestodelete.append(f + e)
+    for f in filestodelete:
+        if os.path.isfile(f): 
+            os.remove(f)
+
+
+
+
+
+
+
+
+
 

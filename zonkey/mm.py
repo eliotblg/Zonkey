@@ -36,7 +36,7 @@ class MMinterface(object):
         self.ref = refcoords
         self.struct = structure
         self.prm = prm 
-        if coords.nqmatoms != 0:
+        if coords.nqmatoms > 0:
             self.struct, self.prm = self.mmmodule.qmmmprepare(coords, \
                                     structure, prm)
 
@@ -65,5 +65,16 @@ class MMinterface(object):
         e, g = self.mmmodule.extractdata(coords, jfile=jobname,val='gradient')
         coords.mmenergy = e
         return e, g
+
+    def clean(self):
+        self.mmmodule.clean(['mmgrad-' + self.name, 'mmener-' + self.name], self.struct)
+
+
+
+
+
+
+
+
 
 
