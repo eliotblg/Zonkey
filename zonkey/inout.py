@@ -4,15 +4,17 @@ import os
 
 mandatory = ['coordinates']
 keywordtype = {'coordinates': 'file', 'qmlist': 'ilist', 'mmlist': 'ilist', \
-               'memory': 'float', 'nproc': 'int', 'qmcode': 'string', \
+               'memory': 'float', 'nproc': 'int', 'nmmproc': 'int', \
+               'nqmproc':'int', 'qmcode': 'string', \
                'qmham': 'string', 'qmbasis': 'string', 'qmextra':'string', \
                'mmcode': 'string', 'mmstruct': 'file', 'mmparam': 'slist', \
-               'activelist': 'ilist', 'frozenlist': 'ilist'}
+               'activelist': 'ilist', 'frozenlist': 'ilist', 'charges':'flist' }
 default = {'coordinates': None,'qmlist': [], 'mmlist': [], \
-           'memory': 2, 'nproc': 1, 'qmcode': 'gaussian', \
+           'memory': 2, 'nproc': 1, 'nmmproc': None, \
+           'nqmproc': None, 'qmcode': 'gaussian', \
            'qmham': 'hf', 'qmbasis': None, 'qmextra':'', \
            'mmcode': 'namd', 'mmstruct': None, 'mmparam': None, \
-           'activelist': [], 'frozenlist': []}
+           'activelist': [], 'frozenlist': [], 'charges': [] }
 keyworddescription = { \
            'coordinates': 'Coordinate file, can be a .pdb or .xyz', \
            'qmlist': 'List of atoms located in QM region (first atom is 0)', \

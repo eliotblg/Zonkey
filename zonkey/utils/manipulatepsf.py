@@ -2,6 +2,7 @@
 # Set the charges of a list of atoms to the input value 
 #
 def setcharges(psf, atomlist, charge=0.0, psfout='mod.psf'):
+    # convert charge to proper format for printing in the psf
     scharge = str(charge)
     if scharge[0] != '-':
         scharge = ' ' + scharge
@@ -32,6 +33,27 @@ def setcharges(psf, atomlist, charge=0.0, psfout='mod.psf'):
     return psfout
 
 #
+# Get charges from psf and output them as a list of natoms size
+#
+def getcharges(psf):
+    charges = []
+    check = False
+    acount = 0
+    natoms = -1
+    with open(psf) as fp:
+        for line in fp:
+            ll = line.split()
+            if check == True:
+                charges.append(float(line[55:70]))
+                acount += 1
+            if len(ll) and ll[1] == '!NATOM':
+                check = True
+                natoms = int(ll[0])
+            if acount == natoms:
+                break
+    return charges
+
+#
 # returns a list of bonds taken directly from the psf
 #
 def getbonds(psf):
@@ -49,6 +71,7 @@ def getbonds(psf):
                 if ll[1] == '!NBOND:':
                     check = True 
     return bondlist
+
 #
 # Remove bonded terms from PSF. Take a list of atoms as input. 
 # The terms removed are those listed in the nabond dictionary 
@@ -101,9 +124,11 @@ def removebonded(psf, atomlist , psfout='modbond.psf'):
     npsf.close()
     return psfout
 
+#
 # create new atom types for QM atoms
 # they interact with MM atoms through vdw interactions at MM level
 # they don't interact together with these interactions
+#
 def modatomtype(psf, prm, atomlist, psfout='newtypes.psf', \
                 prmout='newtypes.prm', startnum=1, createnbfix=True):
     check = False
@@ -159,7 +184,7 @@ def modatomtype(psf, prm, atomlist, psfout='newtypes.psf', \
         wprm += '\nNBFIX\n'
         for i in range(len(atommap)+1):
             for j in range(i+1,len(atommap)):
-                wprm += atommap[i][1] + ' ' + atommap[j][1] + '   0.0    4.0\n'
+                wprm += atommap[i][1] + ' ' + atommap[j][1] + '   0.0    0.0\n'
 
 
     wprm = wprm + '\nEND\n'

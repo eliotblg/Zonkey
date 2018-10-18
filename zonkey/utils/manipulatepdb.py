@@ -3,8 +3,9 @@ import imp
 import shutil 
 import numpy as np
 
-ANG2BOHR        = 0.5291772109217
-BOHR2ANG        = 1.0 / ANG2BOHR
+BOHR2ANG = 0.5291772109217
+ANG2BOHR = 1.0 / BOHR2ANG
+
 
 def changecoordinates(coordfile, atoms, newcoords, newfile = None):
 #    tomodify = dict(zip(atoms, [["% 3.3f"%(j*BOHR2ANG) for j in i] for i in newcoords]))

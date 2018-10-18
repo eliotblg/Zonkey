@@ -1,0 +1,231 @@
+Charm++: standalone mode (not using charmrun)
+Charm++> Running in Multicore mode:  1 threads
+Charm++> Using recursive bisection (scheme 3) for topology aware partitions
+Converse/Charm++ Commit ID: v6.7.1-0-gbdf6a1b-namd-charm-6.7.1-build-2016-Nov-07-136676
+Warning> Randomization of stack pointer is turned on in kernel, thread migration may not work! Run 'echo 0 > /proc/sys/kernel/randomize_va_space' as root to disable it, or try run with '+isomalloc_sync'.  
+CharmLB> Load balancer assumes all CPUs are same.
+Charm++> Running on 1 unique compute nodes (4-way SMP).
+Charm++> cpu topology info is gathered in 0.000 seconds.
+Info: NAMD 2.12 for Linux-x86_64-multicore
+Info: 
+Info: Please visit http://www.ks.uiuc.edu/Research/namd/
+Info: for updates, documentation, and support information.
+Info: 
+Info: Please cite Phillips et al., J. Comp. Chem. 26:1781-1802 (2005)
+Info: in all publications reporting results obtained with NAMD.
+Info: 
+Info: Based on Charm++/Converse 60701 for multicore-linux64-iccstatic
+Info: Built Wed Dec 21 11:36:52 CST 2016 by jim on harare.ks.uiuc.edu
+Info: 1 NAMD  2.12  Linux-x86_64-multicore  1    qc0019  eliot
+Info: Running on 1 processors, 1 nodes, 1 physical nodes.
+Info: CPU topology information available.
+Info: Charm++/Converse parallel runtime startup completed at 0.00137091 s
+CkLoopLib is used in SMP with a simple dynamic scheduling (converse-level notification) but not using node-level queue
+Info: 47.0898 MB of memory in use based on /proc/self/stat
+Info: Configuration file is mminter-mmjob.conf
+Info: Working in the current directory /home/eliot/Zonkey/waterdimer
+TCL: Suspending until startup complete.
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               1
+Info: NUMBER OF STEPS        0
+Info: STEPS PER CYCLE        1
+Info: LOAD BALANCER  Centralized
+Info: LOAD BALANCING STRATEGY  New Load Balancers -- DEFAULT
+Info: LDB PERIOD             200 steps
+Info: FIRST LDB TIMESTEP     5
+Info: LAST LDB TIMESTEP     -1
+Info: LDB BACKGROUND SCALING 1
+Info: HOM BACKGROUND SCALING 1
+Info: MIN ATOMS PER PATCH    40
+Info: INITIAL TEMPERATURE    300
+Info: CENTER OF MASS MOVING INITIALLY? NO
+Info: DIELECTRIC             1
+Info: EXCLUDE                SCALED ONE-FOUR
+Info: 1-4 ELECTROSTATICS SCALED BY 1
+Info: MODIFIED 1-4 VDW PARAMETERS WILL BE USED
+Info: NO DCD TRAJECTORY OUTPUT
+Info: NO EXTENDED SYSTEM TRAJECTORY OUTPUT
+Info: NO VELOCITY DCD OUTPUT
+Info: NO FORCE DCD OUTPUT
+Info: OUTPUT FILENAME        mminter-mmjob-namd.out
+Info: BINARY OUTPUT FILES WILL BE USED
+Info: NO RESTART FILE
+Info: SWITCHING ACTIVE
+Info: SWITCHING ON           997.9
+Info: SWITCHING OFF          999.9
+Info: PAIRLIST DISTANCE      1001
+Info: PAIRLIST SHRINK RATE   0.01
+Info: PAIRLIST GROW RATE     0.01
+Info: PAIRLIST TRIGGER       0.3
+Info: PAIRLISTS PER CYCLE    2
+Info: PAIRLISTS ENABLED
+Info: MARGIN                 0
+Info: HYDROGEN GROUP CUTOFF  2.5
+Info: PATCH DIMENSION        1003.5
+Info: CROSSTERM ENERGY INCLUDED IN DIHEDRAL
+Info: TIMING OUTPUT STEPS    10
+Info: TCL GLOBAL FORCES ACTIVE
+Info: TCL GLOBAL FORCES SCRIPT INLINED IN CONFIG FILE
+Info: USING VERLET I (r-RESPA) MTS SCHEME.
+Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
+Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
+Info: RANDOM NUMBER SEED     1539333594
+Info: USE HYDROGEN BONDS?    NO
+Info: COORDINATE PDB         wat2.pdb
+Info: STRUCTURE FILE         qmmm-wat2.psf
+Info: PARAMETER file: CHARMM format! 
+Info: PARAMETERS             ions.prm
+Info: PARAMETERS             newtypes.prm
+Info: USING ARITHMETIC MEAN TO COMBINE L-J SIGMA PARAMETERS
+Info: BINARY COORDINATES     zonkey.bin.coor
+Info: SUMMARY OF PARAMETERS:
+Info: 3 BONDS
+Info: 1 ANGLES
+Info: 0 DIHEDRAL
+Info: 0 IMPROPER
+Info: 0 CROSSTERM
+Info: 20 VDW
+Info: 7 VDW_PAIRS
+Info: 0 NBTHOLE_PAIRS
+Warning: Ignored 1 bonds with zero force constants.
+Warning: Will get H-H distance in rigid H2O from H-O-H angle.
+Info: TIME FOR READING PSF FILE: 6.31809e-05
+Info: Reading pdb file wat2.pdb
+Info: TIME FOR READING PDB FILE: 3.21865e-05
+Info: 
+Info: ****************************
+Info: STRUCTURE SUMMARY:
+Info: 6 ATOMS
+Info: 2 BONDS
+Info: 1 ANGLES
+Info: 0 DIHEDRALS
+Info: 0 IMPROPERS
+Info: 0 CROSSTERMS
+Info: 0 EXCLUSIONS
+Info: 15 DEGREES OF FREEDOM
+Info: 4 HYDROGEN GROUPS
+Info: 3 ATOMS IN LARGEST HYDROGEN GROUP
+Info: 4 MIGRATION GROUPS
+Info: 3 ATOMS IN LARGEST MIGRATION GROUP
+Info: TOTAL MASS = 36.0308 amu
+Info: TOTAL CHARGE = 0 e
+Info: *****************************
+Info: Reading from binary file zonkey.bin.coor
+Info: 
+Info: Entering startup at 0.00504589 s, 58.7578 MB of memory in use
+Info: Startup phase 0 took 2.69413e-05 s, 58.7578 MB of memory in use
+Info: ADDED 3 IMPLICIT EXCLUSIONS
+Info: Startup phase 1 took 4.91142e-05 s, 58.7578 MB of memory in use
+Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
+Info: NONBONDED TABLE SIZE: 1537 POINTS
+Info: ABSOLUTE IMPRECISION IN FAST TABLE ENERGY: 3.77401e-24 AT 999.712
+Info: RELATIVE IMPRECISION IN FAST TABLE ENERGY: 6.19892e-17 AT 999.712
+Info: INCONSISTENCY IN FAST TABLE ENERGY VS FORCE: 0.000290475 AT 0.251946
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE ENERGY: 9.03102e-52 AT 999.712
+Info: RELATIVE IMPRECISION IN VDWA TABLE ENERGY: 6.68317e-15 AT 995.606
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE FORCE: 4.07832e-56 AT 995.606
+Info: RELATIVE IMPRECISION IN VDWA TABLE FORCE: 3.17062e-16 AT 995.606
+Info: INCONSISTENCY IN VDWA TABLE ENERGY VS FORCE: 1.94723 AT 997.661
+ERROR: 
+ERROR: CALCULATED VDWA FORCE MAY NOT MATCH ENERGY! POSSIBLE BUG!
+ERROR: 
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE ENERGY: 1.45047e-33 AT 999.712
+Info: RELATIVE IMPRECISION IN VDWB TABLE ENERGY: 5.61016e-17 AT 999.712
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE FORCE: 1.50463e-36 AT 999.712
+Info: RELATIVE IMPRECISION IN VDWB TABLE FORCE: 1.83197e-16 AT 995.606
+Info: INCONSISTENCY IN VDWB TABLE ENERGY VS FORCE: 3.30356 AT 997.661
+ERROR: 
+ERROR: CALCULATED VDWB FORCE MAY NOT MATCH ENERGY! POSSIBLE BUG!
+ERROR: 
+Info: Startup phase 2 took 0.00065589 s, 59.5234 MB of memory in use
+Info: Startup phase 3 took 1.90735e-05 s, 59.5234 MB of memory in use
+Info: Startup phase 4 took 1.50204e-05 s, 59.5234 MB of memory in use
+Info: Startup phase 5 took 1.50204e-05 s, 59.5234 MB of memory in use
+Info: ORIGINAL ATOMS MINMAX IS -1.777 -0.82 -0.769  1.581 0.455 0.762
+Info: ADJUSTED ATOMS MINMAX IS -2.19675 -0.979375 -0.960375  2.00075 0.614375 0.953375
+Info: PATCH GRID IS 1 BY 1 BY 1
+Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
+Info: REMOVING COM VELOCITY 1.05529 0.0159074 0.546395
+Info: LARGEST PATCH (0) HAS 6 ATOMS
+Info: TORUS A SIZE 1 USING 0
+Info: TORUS B SIZE 1 USING 0
+Info: TORUS C SIZE 1 USING 0
+Info: TORUS MINIMAL MESH SIZE IS 1 BY 1 BY 1
+Info: Placed 100% of base nodes on same physical node as patch
+Info: Startup phase 6 took 8.98838e-05 s, 59.5234 MB of memory in use
+Info: Startup phase 7 took 1.90735e-05 s, 59.5234 MB of memory in use
+Info: Startup phase 8 took 1.50204e-05 s, 59.5234 MB of memory in use
+LDB: Central LB being created...
+Info: Startup phase 9 took 1.90735e-05 s, 59.5234 MB of memory in use
+Info: CREATING 12 COMPUTE OBJECTS
+Info: Startup phase 10 took 0.00019598 s, 59.5234 MB of memory in use
+Info: Startup phase 11 took 2.69413e-05 s, 59.5234 MB of memory in use
+Info: Startup phase 12 took 2.40803e-05 s, 59.7578 MB of memory in use
+Info: Finished startup at 0.006217 s, 59.7578 MB of memory in use
+
+TCL: Running for 10 steps
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG
+
+ENERGY:       0         0.5158         0.1454         0.0000         0.0000              0.0000         0.5260         0.0000         0.0000         3.1323              4.3195       210.1647         1.1872         4.3381       210.1647
+
+LDB: ============= START OF LOAD BALANCING ============== 1.00798
+LDB: ============== END OF LOAD BALANCING =============== 1.00801
+LDB: =============== DONE WITH MIGRATION ================ 1.00813
+ENERGY:       1         0.3768         0.1243         0.0000         0.0000              0.0000         0.4986         0.0000         0.0000         3.1580              4.1577       211.8909         0.9997         4.1774       211.8909
+
+ENERGY:       2         0.2179         0.0916         0.0000         0.0000              0.0000         0.4746         0.0000         0.0000         3.3805              4.1647       226.8211         0.7842         4.1868       226.8211
+
+ENERGY:       3         0.1130         0.0584         0.0000         0.0000              0.0000         0.4525         0.0000         0.0000         3.7738              4.3977       253.2086         0.6239         4.4215       253.2086
+
+ENERGY:       4         0.1053         0.0334         0.0000         0.0000              0.0000         0.4309         0.0000         0.0000         4.3255              4.8951       290.2225         0.5696         4.9188       290.2225
+
+LDB: ============= START OF LOAD BALANCING ============== 4.4144
+LDB: ============== END OF LOAD BALANCING =============== 4.41443
+LDB: =============== DONE WITH MIGRATION ================ 4.41457
+Info: Initial time: 1 CPUs 0.881596 s/step 10.2037 days/ns 59.8867 MB memory
+ENERGY:       5         0.1867         0.0190         0.0000         0.0000              0.0000         0.4096         0.0000         0.0000         5.0466              5.6618       338.6058         0.6152         5.6843       338.6058
+
+LDB: ============= START OF LOAD BALANCING ============== 5.41642
+LDB: ============== END OF LOAD BALANCING =============== 5.41646
+LDB: =============== DONE WITH MIGRATION ================ 5.41665
+ENERGY:       6         0.3081         0.0130         0.0000         0.0000              0.0000         0.3895         0.0000         0.0000         5.9587              6.6692       399.8059         0.7106         6.6911       399.8059
+
+ENERGY:       7         0.4183         0.0124         0.0000         0.0000              0.0000         0.3719         0.0000         0.0000         7.0669              7.8695       474.1603         0.8026         7.8918       474.1603
+
+ENERGY:       8         0.4925         0.0154         0.0000         0.0000              0.0000         0.3576         0.0000         0.0000         8.3508              9.2163       560.3114         0.8655         9.2386       560.3114
+
+ENERGY:       9         0.5207         0.0210         0.0000         0.0000              0.0000         0.3467         0.0000         0.0000         9.7940             10.6824       657.1419         0.8884        10.7020       657.1419
+
+LDB: ============= START OF LOAD BALANCING ============== 8.82193
+LDB: ============== END OF LOAD BALANCING =============== 8.82196
+LDB: =============== DONE WITH MIGRATION ================ 8.82211
+Info: Initial time: 1 CPUs 0.881403 s/step 10.2014 days/ns 59.8867 MB memory
+TIMING: 10  CPU: 0.014038, 0.0013316/step  Wall: 9.81784, 0.881601/step, 0 hours remaining, 59.886719 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG
+
+ENERGY:      10         0.4830         0.0286         0.0000         0.0000              0.0000         0.3389         0.0000         0.0000        11.4159             12.2665       765.9671         0.8505        12.2824       765.9671
+
+Info: Configuration file is >
+FATAL ERROR: Unable to access config file >
+[0] Stack Traceback:
+  [0:0]   [0x1329155]
+  [0:1]   [0x4f852d]
+  [0:2]   [0x5103a7]
+  [0:3] __libc_start_main+0xf0  [0x7f9bef7e5830]
+  [0:4] _ZNSt8ios_base4InitD1Ev+0x49  [0x40ebe9]
+[0] Stack Traceback:
+  [0:0]   [0x1329835]
+  [0:1]   [0x132910e]
+  [0:2]   [0x1329155]
+  [0:3]   [0x4f852d]
+  [0:4]   [0x5103a7]
+  [0:5] __libc_start_main+0xf0  [0x7f9bef7e5830]
+  [0:6] _ZNSt8ios_base4InitD1Ev+0x49  [0x40ebe9]
+Reading coordinates from wat2.pdb
+3 atoms in QM region
+3 atoms in MM region
+0 ghost atoms
+6 atoms in active region
+0 atoms in frozen region
+0 atoms have no active/frozen region
+

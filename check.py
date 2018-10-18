@@ -17,6 +17,8 @@ opts = inout.readinputfile(options.infile)
 
 ###############################
 
+#TODO have coordinates potentialy read from a .xyz or alike file
+
 # create a "Chemical system" based on the input coordinates
 system = Chemsys(opts['coordinates'])
 
@@ -25,6 +27,9 @@ system.setregions(qmlist=opts['qmlist'], mmlist=opts['mmlist'])
 
 # set active and frozen region
 system.setactivefrozen(alist=opts['activelist'], flist=opts['frozenlist'])
+
+# get charges from psf file | here can input charge manualy too
+system.getcharges(structure = opts['mmstruct'])
 
 # create an interface to the given QM program
 if system.nqmatoms > 0:
@@ -38,7 +43,7 @@ if system.nmmatoms > 0 :
     mmjob = MMinterface(opts['mmcode'], \
         epath='/home/eliot/software/NAMD_2.12_Linux-x86_64-multicore/namd2', \
         memory = opts['memory'], nproc = opts['nproc'])
-    mmjob.setstructure(system, system.zkfile, structure = opts['mmstruct'], \
+    mmjob.setstructure(system, system.infile, structure = opts['mmstruct'], \
         prm = opts['mmparam'])
     if system.nqmatoms <= 0:
         method = mmjob
@@ -54,5 +59,5 @@ optimizer = Geopt(method)
 optimizer.setoptimizer(system.nactives)
 optimizer.optimize(system)
 
-method.clean()
+#method.clean()
 

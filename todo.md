@@ -12,6 +12,8 @@
 - have output for gradients too
 - have an MD module (through NAMD or write one)
 - separate pdb and coordinates files for MM (read pdb for structure in namd but coords fom xyz) 
+- change the printing in opt to just have important values for convergence
+
 
 #DONE
 - remove any trace of the zk- coordinate pdb?

@@ -2,7 +2,7 @@ import os
 import re
 import imp
 import numpy as np
-#from chemsys import Chemsys
+import subprocess
 
 srcdir = os.path.dirname(os.path.abspath(__file__))
 manipsf = imp.load_source('manipulatepsf', srcdir + \
@@ -12,8 +12,8 @@ manipdb = imp.load_source('manipulatepdb', srcdir + \
 binfile = imp.load_source('binaryfiles', srcdir + \
                           '/../utils/binaryfiles.py')
 
-ANG2BOHR        = 0.5291772109217
-BOHR2ANG        = 1.0 / ANG2BOHR
+BOHR2ANG = 0.5291772109217
+ANG2BOHR = 1.0 / BOHR2ANG
 HARTREE2KCALMOL = 627.50947415
 KCALMOL2HARTREE = 1.0 / HARTREE2KCALMOL 
 
@@ -58,7 +58,7 @@ def qmmmprepare(coords, structure, prm):
 # Print job file
 def printjob(coords, jfile='namdjob', nproc=1, mem=1, meth='sp', pbc = None,     \
              structure = None, refcoords = None, prm = None, cutoff = None, \
-             extra = None):
+             extra = None, nsteps = None, temperature = None):
     # TODO check if need to print this part or just update coordinates
     namdkey = defnkey
 
@@ -80,6 +80,9 @@ def printjob(coords, jfile='namdjob', nproc=1, mem=1, meth='sp', pbc = None,    
         namdkey['pairlistdist'] = str(cutoff + 2.0)
 
     namdkey['bincoordinates'] = 'zonkey.bin.coor'
+
+    if temperature != None:
+        namdkey['temperature'] = str(temperature)
 
     # if given, add additional keyword provided
     if extra != None:
@@ -119,13 +122,57 @@ def printjob(coords, jfile='namdjob', nproc=1, mem=1, meth='sp', pbc = None,    
                  '        puts $forcesfile $f($i)\n' + \
                  '      }\n' + \
                  '    }\n' + \
+                 '    close $forcesfile' + \
                  '  }\n'  + \
                  '}\n' )
               # Make NAMD crash to avoid computing second step 
 #             'if {$ee == 1} {\nexec MAKENAMDCRASH\n} else {\nset ee 1\n}' + \
         # run one step (otherwise gradients not computed)
         fp.write('\nrun 1\n')    
-
+    elif meth == 'interactive':
+        fp.write('tclforces on\n' + \
+                 'tclforcesscript {\n' \
+                 '  set natoms ' + str(coords.natoms) + '\n' + \
+                 '  set ee 0\n' + \
+                 '  set atoms {}\n' + \
+                 '  for {set i 1} {$i <= $natoms} {incr i 1} {\n' + \
+                 '    addatom $i\n' + \
+                 '    lappend atoms $i\n' + \
+                 '  }\n' + \
+                 '  enabletotalforces\n' + \
+                 '  proc calcforces {} {\n' + \
+                 '    global atoms' + \
+                 '    global natoms\n' + \
+		 '    set interfile [open "INTERACTIVE" "w"]\n' + \
+                 '    puts $interfile "QM"\n' + \
+                 '    close $interfile\n' + \
+                 '    while { 1 > 0} {\n' + \
+                 '      after 200\n' + \
+                 '      set interfile [open "INTERACTIVE" "r"]\n' + \
+                 '      set check [ gets $interfile line ]\n' + \
+                 '      if { $line == "MM"} {\n' + \
+                 '        set gradfile [open "qmgradients.txt" "r"]\n' + \
+                 '        foreach atom $atoms {\n' + \
+                 '          set check [gets $gradfile line ]\n' + \
+                 '          set force [ split $line ]\n' + \
+                 '          addforce $atom $force\n' + \
+                 '        }\n' + \
+                 '        close $gradfile\n' + \
+                 '        close $interfile\n' + \
+                 '        break\n' + \
+                 '      }\n' + \
+                 '      close $interfile\n' + \
+                 ' ' + \
+                 '    }\n' + \
+                 '    set tstep [ getstep ] \n' + \
+                 '    if { $tstep == ' + str(nsteps) + ' } {\n' + \
+                 '      set interfile [open "INTERACTIVE" "w"]\n' + \
+                 '      puts $interfile "STOP"\n' + \
+                 '      close $interfile\n' + \
+                 '    }\n' + \
+                 '  }\n' + \
+                 '}\n' )
+        fp.write('\nrun ' + str(nsteps) + '\n')
     fp.close()
 
 def runjob(coords, executable, refcoords=None, jfile='jf', nproc=1, \
@@ -137,6 +184,26 @@ def runjob(coords, executable, refcoords=None, jfile='jf', nproc=1, \
     os.system(executable + ' +p ' + str(nproc) + ' ' + jfile + '.conf > ' + \
               jfile + '.log')
 
+def runinteractivejob(coords, executable, refcoords=None, jfile='jf', nproc=1, \
+           updatecoordinates=True):
+
+    # use bin file because pdb coordinates only use a few digits
+    if updatecoordinates:
+        binfile.printnamdbin('zonkey.bin.coor', coords.coords)
+
+    # run the actual job
+    namdlog = open( jfile + '.log', 'w')
+    if nproc > 1:
+        namdijob = subprocess.Popen([executable, '+p', str(nproc), \
+                         jfile + '.conf', '>', jfile + '.log'])
+    else:
+#        namdijob = subprocess.Popen([executable, jfile + '.conf', \
+#                         '>', jfile + '.log'])
+#        namdijob = subprocess.Popen([executable, jfile + '.conf > ' + jfile + '.log'])
+        namdijob = subprocess.Popen(executable + ' ' + jfile + '.conf', stdout=namdlog, stderr=namdlog, shell=True)
+        if namdijob.poll() != None:
+            namdlog.close()
+    return namdijob
 
 #TODO def checkjob()
 
@@ -150,11 +217,12 @@ def extractdata(coords, jfile='jf', val='energy'):
             return e
         g = np.zeros((coords.natoms, 3))
         i = 0
+        # -1.0 because its force and we use gradient
         conv = -1.0 * KCALMOL2HARTREE * ANG2BOHR
         with open(jfile + '-namdforces.txt') as fp:
-            for line in fp.readlines(): 
+            for line in fp.readlines():
                 l = line.split()
-                g[i] = [float(l[0])*conv, float(l[1])*conv, float(l[2])*conv] 
+                g[i] = [float(l[0])*conv, float(l[1])*conv, float(l[2])*conv]
                 i += 1
         return e, g
 
@@ -162,6 +230,7 @@ def clean(nametodelete, structurefile):
     extensions = ['.log', '-namdforces.txt', '-namd.out.xsc', '-namd.out.vel', '-namd.out.coor', \
                   '-namd.out.xsc.BAK', '-namd.out.vel.BAK', '-namd.out.coor.BAK', '.conf']
     filestodelete = ['zonkey.bin.coor', 'newtypes.prm']
+
     if structurefile[0:5] == 'qmmm-':
         filestodelete.append(structurefile)
     for f in nametodelete:
@@ -170,7 +239,6 @@ def clean(nametodelete, structurefile):
     for f in filestodelete:
         if os.path.isfile(f): 
             os.remove(f)
-
 
 
 

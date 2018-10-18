@@ -1,8 +1,8 @@
 import os
 import struct
 
-ANG2BOHR        = 0.5291772109217
-BOHR2ANG        = 1.0 / ANG2BOHR
+BOHR2ANG = 0.5291772109217
+ANG2BOHR = 1.0 / BOHR2ANG
 
 def readnamdbin(filename):
     with open(filename, 'rb') as fp: 

@@ -1,16 +1,21 @@
-nproc 4
+#nproc 4
+nqmproc 4
+nmmproc 1
+ 
 memory 4
 
-coordinates wat2.pdb 
+coordinates random.pdb 
 
-qmlist [ 0, 1, 2 ] 
+#qmlist [ 0, 1, 2 , 3, 4, 5 ] 
+#mmlist [ 0, 1, 2 , 3, 4, 5 ]
+qmlist [ 0, 1, 2 ]
 
 mmcode namd
 mmstruct wat2.psf
 mmparam [ ions.prm ]
 
 qmcode gaussian
-qmham BLYP 
-qmbasis SVP
+qmham HF 
+qmbasis STO-3G
 #qmextra EmpiricalDispersion\=GD3
 activelist [ 0, 1, 2, 3, 4, 5 ]

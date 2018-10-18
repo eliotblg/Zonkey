@@ -2,7 +2,8 @@ import os
 import imp
 import numpy as np
 
-ANG2BOHR        = 0.5291772109217
+BOHR2ANG = 0.5291772109217
+ANG2BOHR = 1.0 / BOHR2ANG
 
 def readxyz(coordfile):
     anames = []

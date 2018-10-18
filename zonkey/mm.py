@@ -23,7 +23,7 @@ class MMinterface(object):
         self.memory=memory
         self.nproc=nproc
 
-        #Load MM module
+        #Load MM module | TODO do this part properly
         srcdir = os.path.dirname(os.path.abspath(__file__))
         self.mmmodule = imp.load_source(mmcode, srcdir + '/interfaces/' \
                                       + mmcode + '.py')
@@ -41,12 +41,19 @@ class MMinterface(object):
                                     structure, prm)
 
     def runjob(self, coords, jfile='mmjob', method='sp', memory=1, nproc=1, \
-               pbc = None, cutoff = None, extra = None):
+               pbc = None, cutoff = None, extra = None, nsteps = None, \
+               temperature = None):
         self.mmmodule.printjob(coords, jfile=jfile, nproc=nproc, mem=memory, \
                                structure = self.struct, prm = self.prm, \
                                refcoords = self.ref, meth=method, pbc = pbc, \
-                               cutoff = cutoff, extra=extra)
-        self.mmmodule.runjob(coords, self.execpath, jfile=jfile, nproc=nproc)
+                               cutoff = cutoff, extra=extra, nsteps=nsteps, \
+                               temperature = temperature)
+        if method == 'interactive':
+            mmijob = self.mmmodule.runinteractivejob(coords, self.execpath, \
+                                                     jfile=jfile, nproc=nproc)
+            return mmijob
+        else:
+            self.mmmodule.runjob(coords, self.execpath, jfile=jfile, nproc=nproc)
 
     def energy(self, coords, pbc = None, cutoff = None, extra = None):
         jobname = 'mmener-' + self.name
@@ -62,14 +69,22 @@ class MMinterface(object):
         self.runjob(coords, jfile = jobname, method = 'grad', \
                     memory = self.memory, nproc = self.nproc, pbc = pbc, \
                     cutoff = cutoff, extra = extra)
-        e, g = self.mmmodule.extractdata(coords, jfile=jobname,val='gradient')
+        e, g = self.mmmodule.extractdata(coords, jfile=jobname, val='gradient')
         coords.mmenergy = e
         return e, g
 
+    def interactive(self, coords, pbc = None, cutoff = None, extra = None, \
+                    nsteps = 10, temperature = 300):
+        jobname = 'mminter-' + self.name
+        mmijob = self.runjob(coords, jfile = jobname, method = 'interactive', \
+                    memory = self.memory, nproc = self.nproc, pbc = pbc, \
+                    cutoff = cutoff, extra = extra, nsteps=nsteps, \
+                    temperature = temperature)
+        return mmijob 
+
     def clean(self):
-        self.mmmodule.clean(['mmgrad-' + self.name, 'mmener-' + self.name], self.struct)
-
-
+        self.mmmodule.clean(['mmgrad-' + self.name, 'mmener-' + self.name, \
+                             'mminter-' + self.name], self.struct)
 
 
 

@@ -2,7 +2,7 @@ import os
 import imp
 import numpy as np
 
-from . interfaces import *
+from . interfaces import gaussian 
 
 #
 # Generic interface to QM codes for QM/MM or pure QM computations 
@@ -22,12 +22,13 @@ class QMinterface(object):
         self.memory=memory
         self.nproc=nproc
 
-        # load QM module
+        # load QM module | TODO might have a better way to do this
         srcdir = os.path.dirname(os.path.abspath(__file__))
         self.qmmodule = imp.load_source(qmcode, \
                         srcdir + '/interfaces/' + qmcode + '.py')
         if not self.qmmodule.checkenvironment():
             self.qmmodule.setupenvironment(epath, spath)
+
 
     def setmethod(self, hamiltonian, basis=None, extra=''):
         self.hamiltonian = hamiltonian
@@ -36,6 +37,9 @@ class QMinterface(object):
 
     def runjob(self, coords, jfile='qmjob', method='sp', memory=1, nproc=1):
         #TODO read self.memory and self.nproc if None is provided
+        # make sure charges on QM atoms are 0.0; altough they shouldn't be included
+        for i in coords.qmatoms:
+            coords.charges[i] = 0.0
         self.qmmodule.printjob(coords, jfile=jfile, nproc=nproc, mem=memory, \
                                ham=self.hamiltonian, basis=self.basis,       \
                                meth=method, charge=coords.charge,            \

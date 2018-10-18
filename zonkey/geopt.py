@@ -9,6 +9,7 @@ class Geopt(object):
     def __init__(self, ofunction, algorithm='LD_LBFGS'):
         self.ofunction = ofunction
         self.algorithm = 'nlopt.' + algorithm.upper()
+        self.histfile = 'geopt-history.xyz'
 
     def objectivefunction(self, x, grad):
 
@@ -40,6 +41,10 @@ class Geopt(object):
             if maxg < self.gmaxtol and madg < self.gmadtol:
                 print('Max and Mad Gradients converged at step ' + str(self.nstep))
                 self.opt.force_stop() 
+
+        printfile.printxyz(self.c.coords, self.c.atypes, \
+                           self.histfile, append = True)
+
         self.previouse  = e
         self.previousde = de
         self.nstep += 1

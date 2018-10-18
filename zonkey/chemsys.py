@@ -23,9 +23,12 @@ class Chemsys(object):
         else:
             self.infile = coordfile
             self.readcoordfile(coordfile)
+        self.nqmatoms = 0
+        self.nmmatoms = 0
         self.qmenergy  = None
         self.mmenergy  = None
         self.qmmmenergy = None
+        self.firstcall = True
 
     def readcoordfile(self, coordfile):
         self.infile = coordfile
@@ -51,11 +54,18 @@ class Chemsys(object):
         self.coords = np.array(self.coords)
         self.grad   = np.zeros([len(self.coords),3])
 
+    def getcharges(self, charges = None, structure = None):
+        if charges != None:
+            self.charges = np.array(charges)
+        elif structure != None:
+            self.charges = manipulatepsf.getcharges(structure)
+        else:
+            print('Impossible to get charges from input or structure file\n')
+            exit(1)
+
     def getbonds(self, structure=None):
         # implementation only covers psf at this stage
         if structure != None:
-#            srcdir = os.path.dirname(os.path.abspath(__file__))
-#            mpsf = imp.load_source('mpsf', srcdir + '/utils/manipulatepsf.py')    
             self.bonds = manipulatepsf.getbonds(structure)
             self.nbonds = len(self.bonds)
         else:
@@ -150,7 +160,8 @@ class Chemsys(object):
                   str(self.qmmmenergy*scale))
 
 
-
+    def __str__(self):
+        self.printenergies()
 
 
 
