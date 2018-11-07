@@ -28,6 +28,7 @@ class Chemsys(object):
         self.qmenergy  = None
         self.mmenergy  = None
         self.qmmmenergy = None
+        # set a first call to help setup modules 
         self.firstcall = True
 
     def readcoordfile(self, coordfile):

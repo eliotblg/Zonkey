@@ -4,7 +4,9 @@ nmmproc 1
  
 memory 4
 
-coordinates random.pdb 
+#coordinates random.pdb 
+
+coordinates opt.pdb
 
 #qmlist [ 0, 1, 2 , 3, 4, 5 ] 
 #mmlist [ 0, 1, 2 , 3, 4, 5 ]
@@ -16,6 +18,6 @@ mmparam [ ions.prm ]
 
 qmcode gaussian
 qmham HF 
-qmbasis STO-3G
+qmbasis 6-31g 
 #qmextra EmpiricalDispersion\=GD3
 activelist [ 0, 1, 2, 3, 4, 5 ]

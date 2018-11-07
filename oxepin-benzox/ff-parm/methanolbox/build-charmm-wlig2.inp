@@ -1,0 +1,53 @@
+* YO
+*
+
+BOMLEV -10
+
+!!READ RTF CARD top_all36_cgenff.rtf
+!READ RTF CARD benzox.rtf APPEND
+!stream card benzox.str
+!read prm card par_all36_cgenff.prm
+!read prm card benzox.prm append
+read rtf card meoh-benzox.rtf
+read prm card meoh-benzox.prm 
+
+
+OPEN UNIT 22 CARD READ NAME meohbox.pdb
+READ SEQU PDB UNIT 22
+GENErate A SETUp
+REWInd UNIT 22
+READ COOR PDB UNIT 22
+CLOSE UNIT 22
+
+OPEN UNIT 22 CARD READ NAME benzox-formeohbox.pdb
+READ SEQU PDB UNIT 22
+
+GENErate A SETUp
+
+REWInd UNIT 22
+
+READ COOR PDB UNIT 22
+CLOSE UNIT 22
+
+
+
+HBUIld SELE ALL END
+
+IC FILL
+IC PARAmeters
+IC BUILd
+! HBUIld SELE ALL END
+
+JOIN A RENUM
+! JOIN B RENUM
+! mini sd nstep 50
+! mini abnr nstep 1000000 tolg 0.01
+
+OPEN UNIT 1 WRITe CARD NAME meoh40box.psf
+WRITe PSF CARD UNIT 1
+
+OPEN UNIT 1 WRITe CARD NAME meoh40box.pdb
+WRITe COOR PDB UNIT 1
+
+OPEN WRITE UNIT 10 CARD NAME meph40box.xplor.ext.psf
+WRITE PSF  XPLO UNIT 10 CARD

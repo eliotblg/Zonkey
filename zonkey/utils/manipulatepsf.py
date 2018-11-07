@@ -75,7 +75,7 @@ def getbonds(psf):
 #
 # Remove bonded terms from PSF. Take a list of atoms as input. 
 # The terms removed are those listed in the nabond dictionary 
-# which maps them to the number of atoms used to describe them
+# which maps them to the number of atoms used to define them
 #
 # !!! VDW or electrostatic 1-4 interaction definition
 #

@@ -6,10 +6,13 @@ from . utils import manipulatepdb
 from . utils import printfile
 
 class Geopt(object):
-    def __init__(self, ofunction, algorithm='LD_LBFGS'):
+    def __init__(self, ofunction, algorithm='LD_LBFGS', historyf='geopt-history.xyz'):
         self.ofunction = ofunction
         self.algorithm = 'nlopt.' + algorithm.upper()
-        self.histfile = 'geopt-history.xyz'
+        # if there is already a history file from previous run move it to BCKP-
+        if os.path.isfile(historyf):
+            os.rename(historyf, 'BCKP-' + historyf)
+        self.histfile = historyf 
 
     def objectivefunction(self, x, grad):
 
@@ -109,5 +112,51 @@ class Geopt(object):
 
     def getmadmaxgrad(self, grad):
         t = np.absolute(grad)
-        return np.mean(t),np.amax(t)  
+        return np.mean(t), np.amax(t)  
+
+    # simple steepest (gradient) descend just for testing
+    def steepestd(self, coords, step = 0.1, maxeval = 200):
+        self.c = coords
+        pc = coords.coords
+        de = 1E9
+        pe = 1E9
+        for i in range(maxeval):
+            self.c.coords = pc
+            e, g = self.ofunction.gradients(self.c)
+            de = e - pe
+            pe = e
+            print('Energy and DE at step ' + str(i+1) + ': ' + str(e) +' \ ' + str(de) )
+            if abs(de) < 1.0E-8:
+                print('Converged after ' + str(i+1) + ' steepest descent steps\n')
+                break
+            c = pc - step * g           
+#            if i > 0: 
+#                dg = np.ravel(g-pg)
+#                #ndg = np.sum(np.absolute(dg))
+#                ndg = np.linalg.norm(dg)
+#                #print(dg)
+#                #print(np.transpose(np.array(np.ravel(c-pc))))
+#                step = np.matmul(np.transpose(np.ravel(c - pc)), dg) / (ndg*ndg)
+#                print('step size corrected to: ' + str(step))
+            printfile.printxyz(c, coords.atypes, self.histfile, append = True)
+            pc = c
+            pe = e
+            pg = g 
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

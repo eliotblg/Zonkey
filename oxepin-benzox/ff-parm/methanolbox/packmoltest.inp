@@ -1,0 +1,8 @@
+tolerance 2.0
+filetype pdb
+output big-meohbox.pdb
+
+structure methanol.pdb
+  number 14886 
+  inside box 0.0 0.0 0.0 100.0 100.0 100.0
+end structure

@@ -1,0 +1,6 @@
+configuration {
+  step        26000
+  dt 2.000000e+00
+  version 2016-11-28-namd-2-12
+}
+

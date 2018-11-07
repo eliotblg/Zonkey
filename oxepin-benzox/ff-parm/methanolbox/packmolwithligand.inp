@@ -1,0 +1,13 @@
+tolerance 2.0
+filetype pdb
+output big-meohbox.pdb
+
+structure methanol.pdb
+  number 3215 
+  inside box 0.0 0.0 0.0 60.0 60.0 60.0
+end structure
+
+structure benxoz.pdb
+  centerofmass
+  fixed 30.0 30.0 30.0 0.0 0.0 0.0
+end structure 

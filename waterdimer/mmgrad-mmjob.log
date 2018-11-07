@@ -19,7 +19,7 @@ Info: Built Wed Dec 21 11:36:52 CST 2016 by jim on harare.ks.uiuc.edu
 Info: 1 NAMD  2.12  Linux-x86_64-multicore  1    qc0019  eliot
 Info: Running on 1 processors, 1 nodes, 1 physical nodes.
 Info: CPU topology information available.
-Info: Charm++/Converse parallel runtime startup completed at 0.0014081 s
+Info: Charm++/Converse parallel runtime startup completed at 0.00135708 s
 CkLoopLib is used in SMP with a simple dynamic scheduling (converse-level notification) but not using node-level queue
 Info: 47.0898 MB of memory in use based on /proc/self/stat
 Info: Configuration file is mmgrad-mmjob.conf
@@ -69,9 +69,9 @@ Info: TCL GLOBAL FORCES SCRIPT INLINED IN CONFIG FILE
 Info: USING VERLET I (r-RESPA) MTS SCHEME.
 Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
 Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
-Info: RANDOM NUMBER SEED     1539870441
+Info: RANDOM NUMBER SEED     1541603166
 Info: USE HYDROGEN BONDS?    NO
-Info: COORDINATE PDB         random.pdb
+Info: COORDINATE PDB         opt.pdb
 Info: STRUCTURE FILE         qmmm-wat2.psf
 Info: PARAMETER file: CHARMM format! 
 Info: PARAMETERS             ions.prm
@@ -89,9 +89,9 @@ Info: 7 VDW_PAIRS
 Info: 0 NBTHOLE_PAIRS
 Warning: Ignored 1 bonds with zero force constants.
 Warning: Will get H-H distance in rigid H2O from H-O-H angle.
-Info: TIME FOR READING PSF FILE: 9.39369e-05
-Info: Reading pdb file random.pdb
-Info: TIME FOR READING PDB FILE: 2.88486e-05
+Info: TIME FOR READING PSF FILE: 6.50883e-05
+Info: Reading pdb file opt.pdb
+Info: TIME FOR READING PDB FILE: 2.31266e-05
 Info: 
 Info: ****************************
 Info: STRUCTURE SUMMARY:
@@ -112,10 +112,10 @@ Info: TOTAL CHARGE = 0 e
 Info: *****************************
 Info: Reading from binary file zonkey.bin.coor
 Info: 
-Info: Entering startup at 0.0052371 s, 58.7578 MB of memory in use
-Info: Startup phase 0 took 3.60012e-05 s, 58.7578 MB of memory in use
+Info: Entering startup at 0.00515008 s, 58.7578 MB of memory in use
+Info: Startup phase 0 took 3.00407e-05 s, 58.7578 MB of memory in use
 Info: ADDED 3 IMPLICIT EXCLUSIONS
-Info: Startup phase 1 took 6.69956e-05 s, 58.7578 MB of memory in use
+Info: Startup phase 1 took 5.19753e-05 s, 58.7578 MB of memory in use
 Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
 Info: NONBONDED TABLE SIZE: 1537 POINTS
 Info: ABSOLUTE IMPRECISION IN FAST TABLE ENERGY: 3.77401e-24 AT 999.712
@@ -137,12 +137,12 @@ Info: INCONSISTENCY IN VDWB TABLE ENERGY VS FORCE: 3.30356 AT 997.661
 ERROR: 
 ERROR: CALCULATED VDWB FORCE MAY NOT MATCH ENERGY! POSSIBLE BUG!
 ERROR: 
-Info: Startup phase 2 took 0.00078702 s, 59.5391 MB of memory in use
-Info: Startup phase 3 took 2.5034e-05 s, 59.5391 MB of memory in use
-Info: Startup phase 4 took 2.09808e-05 s, 59.5391 MB of memory in use
-Info: Startup phase 5 took 1.78814e-05 s, 59.5391 MB of memory in use
-Info: ORIGINAL ATOMS MINMAX IS -0.975936 -0.139183 -0.840746  1.80654 0.968641 0.805031
-Info: ADJUSTED ATOMS MINMAX IS -1.32375 -0.277661 -1.04647  2.15435 1.10712 1.01075
+Info: Startup phase 2 took 0.000658035 s, 59.5391 MB of memory in use
+Info: Startup phase 3 took 2.09808e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 4 took 1.69277e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 5 took 1.50204e-05 s, 59.5391 MB of memory in use
+Info: ORIGINAL ATOMS MINMAX IS -1.86736 -0.840966 -0.790521  1.68596 0.432794 0.784403
+Info: ADJUSTED ATOMS MINMAX IS -2.31153 -1.00019 -0.987387  2.13012 0.592015 0.981269
 Info: PATCH GRID IS 1 BY 1 BY 1
 Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
 Info: REMOVING COM VELOCITY 0 0 0
@@ -152,26 +152,26 @@ Info: TORUS B SIZE 1 USING 0
 Info: TORUS C SIZE 1 USING 0
 Info: TORUS MINIMAL MESH SIZE IS 1 BY 1 BY 1
 Info: Placed 100% of base nodes on same physical node as patch
-Info: Startup phase 6 took 0.000112057 s, 59.5391 MB of memory in use
-Info: Startup phase 7 took 2.59876e-05 s, 59.5391 MB of memory in use
-Info: Startup phase 8 took 1.90735e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 6 took 9.01222e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 7 took 2.09808e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 8 took 1.5974e-05 s, 59.5391 MB of memory in use
 LDB: Central LB being created...
-Info: Startup phase 9 took 2.59876e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 9 took 2.09808e-05 s, 59.5391 MB of memory in use
 Info: CREATING 12 COMPUTE OBJECTS
-Info: Startup phase 10 took 0.000257015 s, 59.5391 MB of memory in use
-Info: Startup phase 11 took 3.38554e-05 s, 59.5391 MB of memory in use
-Info: Startup phase 12 took 3.21865e-05 s, 59.7734 MB of memory in use
-Info: Finished startup at 0.00669718 s, 59.7734 MB of memory in use
+Info: Startup phase 10 took 0.000211954 s, 59.5391 MB of memory in use
+Info: Startup phase 11 took 2.90871e-05 s, 59.5391 MB of memory in use
+Info: Startup phase 12 took 2.38419e-05 s, 59.7734 MB of memory in use
+Info: Finished startup at 0.006356 s, 59.7734 MB of memory in use
 
 TCL: Running for 1 steps
 ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG
 
-ENERGY:       0         1.2031         0.2182         0.0000         0.0000              0.0000         7.5494         0.0000         0.0000         0.0000              8.9707         0.0000         8.9707         9.0198         0.0000
+ENERGY:       0         0.0002         0.0024         0.0000         0.0000              0.0000        -0.1900         0.0000         0.0000         0.0000             -0.1874         0.0000        -0.1874        -0.1874         0.0000
 
-LDB: ============= START OF LOAD BALANCING ============== 0.00702214
-LDB: ============== END OF LOAD BALANCING =============== 0.00703597
-LDB: =============== DONE WITH MIGRATION ================ 0.00710106
-ENERGY:       1         0.7617         0.1976         0.0000         0.0000              0.0000         7.4744         0.0000         0.0000         0.4908              8.9245        32.9305         8.4337         9.0159        32.9305
+LDB: ============= START OF LOAD BALANCING ============== 0.00661802
+LDB: ============== END OF LOAD BALANCING =============== 0.00662899
+LDB: =============== DONE WITH MIGRATION ================ 0.00669408
+ENERGY:       1         0.0002         0.0021         0.0000         0.0000              0.0000        -0.1900         0.0000         0.0000         0.0003             -0.1874         0.0204        -0.1877        -0.1874         0.0204
 
 WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 1
 WRITING COORDINATES TO OUTPUT FILE AT STEP 1
@@ -180,5 +180,5 @@ WRITING VELOCITIES TO OUTPUT FILE AT STEP 1
 The last velocity output (seq=-2) takes 0.000 seconds, 59.902 MB of memory in use
 ====================================================
 
-WallClock: 0.007276  CPUTime: 0.008913  Memory: 59.902344 MB
+WallClock: 0.006785  CPUTime: 0.007959  Memory: 59.902344 MB
 [Partition 0][Node 0] End of program

@@ -92,7 +92,7 @@ def printjob(coords, jfile='jf', nproc=1, mem=1, ham='hf', basis='STO-3G', \
         for i in coords.mmatoms:
             c = coords.coords[i]
             fp.write(str(c[0]*BOHR2ANG) + ' ' + str(c[1]*BOHR2ANG) + ' ' + \
-                     str(c[2]*BOHR2ANG) + ' ' + str(coords.charges[i]) + '\n')
+                     str(c[2]*BOHR2ANG) + ' ' + str(coords.charges[i] ) + '\n')
         fp.write('\n')
         for i in coords.mmatoms:
             c = coords.coords[i]
@@ -101,17 +101,14 @@ def printjob(coords, jfile='jf', nproc=1, mem=1, ham='hf', basis='STO-3G', \
         
 
 #TODO remove        # add grid point at MM atoms to evaluate the potential
-        if meth == 'grad' and coords.nmmatoms > 0 and 0 == 1:
-            fp.write('\n' + str(coords.nmmatoms) + ',2,41,42\n')
-            # write the grid to .41 | output will be taken from .42
-            fortf = open('fort.41', 'w')
-            for i in coords.mmatoms:
-                c = coords.coords[i]
-                fortf.write('%20f%20f%20f\n'%(c[0]*BOHR2ANG, c[1]*BOHR2ANG, c[2]*BOHR2ANG))
-
-            
-
-            fortf.close()
+ #       if meth == 'grad' and coords.nmmatoms > 0:
+ #           fp.write('\n' + str(coords.nmmatoms) + ',2,41,42\n')
+ #           # write the grid to .41 | output will be taken from .42
+ #           fortf = open('fort.41', 'w')
+ #           for i in coords.mmatoms:
+ #               c = coords.coords[i]
+ #               fortf.write('%20f%20f%20f\n'%(c[0]*BOHR2ANG, c[1]*BOHR2ANG, c[2]*BOHR2ANG))
+ #           fortf.close()
                 
     # mandatory blank line at the end 
     fp.write('\n')
@@ -121,7 +118,6 @@ def runjob(executable, jfile='jf'):
     os.system(executable + ' < ' + jfile + '.com > ' + jfile + '.log')
 
 #TODO def checkjob()
-
 def extractdata(coords, jfile='jf', val='energy'):
     with open(jfile + '.log', 'r') as f:
         fdata = f.read()
@@ -153,6 +149,7 @@ def extractdata(coords, jfile='jf', val='energy'):
         # store gradients at the right position switch D to E for scientific num 
         for i, qma in enumerate(coords.qmatoms):
             g = gdata[i].replace('D', 'E').split()
+            #print(g)
             grad[qma] = [ float(g[0]), float(g[1]), float(g[2]) ]
 
         if coords.nmmatoms:
@@ -160,26 +157,28 @@ def extractdata(coords, jfile='jf', val='energy'):
             for il, line in enumerate(lines):
                 if line[0:55] == '    Center     Electric         -------- Electric Field':
                     break
-            il += 2 + coords.nqmatoms
+            il += 2 + coords.nqmatoms +1
             for it, mma in enumerate(coords.mmatoms):
                 d = lines[il+it].split()
                 q = coords.charges[mma] * -1.0
                 grad[mma] = [float(d[2])*q, float(d[3])*q, float(d[4])*q]
+
 #TODO remove        # get the MM gradients due to QM part
-        if coords.nmmatoms and 0 == 1:
-            fortf = open('fort.42','r')
-            pot = 0.0
-            for i in coords.mmatoms:
-                t = fortf.readline().split()
-                pot += float(t[3])
-                d = fortf.readline().split()
-                q = coords.charges[i] * -1.0
-                grad[i] = [float(d[0])*q, float(d[1])*q, float(d[2])*q]
-                ##print([coords.charges[jj] for jj in range(int(coords.natoms))])
-            # energy += pot
-            fortf.close()
+#        if coords.nmmatoms and 0 == 1:
+#            fortf = open('fort.42','r')
+#            pot = 0.0
+#            for i in coords.mmatoms:
+#                t = fortf.readline().split()
+#                pot += float(t[3])
+#                d = fortf.readline().split()
+#                q = coords.charges[i] * -1.0
+#                grad[i] = [float(d[0])*q, float(d[1])*q, float(d[2])*q]
+#                ##print([coords.charges[jj] for jj in range(int(coords.natoms))])
+#            # energy += pot
+#            fortf.close()
+
     grad = np.array(grad) 
-    print(grad)
+    #print(grad)
     return energy, grad
 
 def clean(filetodelete):
