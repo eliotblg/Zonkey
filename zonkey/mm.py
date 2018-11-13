@@ -74,7 +74,7 @@ class MMinterface(object):
         return e, g
 
     def interactive(self, coords, pbc = None, cutoff = None, extra = None, \
-                    nsteps = 10, temperature = 300):
+                    nsteps = 1000, temperature = 30):
         jobname = 'mminter-' + self.name
         mmijob = self.runjob(coords, jfile = jobname, method = 'interactive', \
                     memory = self.memory, nproc = self.nproc, pbc = pbc, \
@@ -83,9 +83,9 @@ class MMinterface(object):
         return mmijob 
 
     def clean(self):
-        self.mmmodule.clean(['mmgrad-' + self.name, 'mmener-' + self.name, \
-                             'mminter-' + self.name], self.struct)
-
+#        self.mmmodule.clean(['mmgrad-' + self.name, 'mmener-' + self.name, \
+#                             'mminter-' + self.name], self.struct)
+        pass
 
 
 

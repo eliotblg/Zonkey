@@ -18,7 +18,7 @@ default = {'coordinates': None,'qmlist': [], 'mmlist': [], \
 keyworddescription = { \
            'coordinates': 'Coordinate file, can be a .pdb or .xyz', \
            'qmlist': 'List of atoms located in QM region (first atom is 0)', \
-           'mmlist': 'List of atoms in MM region, default is reverse of qmlist', \
+           'mmlist': 'List of atoms in MM region, default is the inverse of qmlist', \
            }
 
 def readinputfile(ifile):

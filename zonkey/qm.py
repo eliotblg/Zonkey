@@ -37,16 +37,22 @@ class QMinterface(object):
 
     def runjob(self, coords, jfile='qmjob', method='sp', memory=1, nproc=1):
         #TODO read self.memory and self.nproc if None is provided
+
         # make sure charges on QM atoms are 0.0; altough they shouldn't be included
         for i in coords.qmatoms:
             coords.charges[i] = 0.0
+
+        # print the job file and prepare for computation
         self.qmmodule.printjob(coords, jfile=jfile, nproc=nproc, mem=memory, \
                                ham=self.hamiltonian, basis=self.basis,       \
                                meth=method, charge=coords.charge,            \
                                mult=coords.mult, extra=self.extra)
+
+        # run the actual job using the given executable
         self.qmmodule.runjob(self.execpath, jfile=jfile)
         ##self.qmmodule.checkjob()
 
+    # single point to obtain energy
     def energy(self, coords):
         self.runjob(coords, jfile='energy-' + self.name, method='sp', \
                     memory=self.memory, nproc=self.nproc)

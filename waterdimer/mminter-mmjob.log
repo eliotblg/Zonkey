@@ -1,0 +1,232 @@
+Charm++: standalone mode (not using charmrun)
+Charm++> Running in Multicore mode:  1 threads
+Charm++> Using recursive bisection (scheme 3) for topology aware partitions
+Converse/Charm++ Commit ID: v6.7.1-0-gbdf6a1b-namd-charm-6.7.1-build-2016-Nov-07-136676
+Warning> Randomization of stack pointer is turned on in kernel, thread migration may not work! Run 'echo 0 > /proc/sys/kernel/randomize_va_space' as root to disable it, or try run with '+isomalloc_sync'.  
+CharmLB> Load balancer assumes all CPUs are same.
+Charm++> Running on 1 unique compute nodes (4-way SMP).
+Charm++> cpu topology info is gathered in 0.000 seconds.
+Info: NAMD 2.12 for Linux-x86_64-multicore
+Info: 
+Info: Please visit http://www.ks.uiuc.edu/Research/namd/
+Info: for updates, documentation, and support information.
+Info: 
+Info: Please cite Phillips et al., J. Comp. Chem. 26:1781-1802 (2005)
+Info: in all publications reporting results obtained with NAMD.
+Info: 
+Info: Based on Charm++/Converse 60701 for multicore-linux64-iccstatic
+Info: Built Wed Dec 21 11:36:52 CST 2016 by jim on harare.ks.uiuc.edu
+Info: 1 NAMD  2.12  Linux-x86_64-multicore  1    qc0019  eliot
+Info: Running on 1 processors, 1 nodes, 1 physical nodes.
+Info: CPU topology information available.
+Info: Charm++/Converse parallel runtime startup completed at 0.00139093 s
+CkLoopLib is used in SMP with a simple dynamic scheduling (converse-level notification) but not using node-level queue
+Info: 47.0898 MB of memory in use based on /proc/self/stat
+Info: Configuration file is mminter-mmjob.conf
+Info: Working in the current directory /home/eliot/Zonkey/waterdimer
+TCL: Suspending until startup complete.
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               1
+Info: NUMBER OF STEPS        0
+Info: STEPS PER CYCLE        1
+Info: LOAD BALANCER  Centralized
+Info: LOAD BALANCING STRATEGY  New Load Balancers -- DEFAULT
+Info: LDB PERIOD             200 steps
+Info: FIRST LDB TIMESTEP     5
+Info: LAST LDB TIMESTEP     -1
+Info: LDB BACKGROUND SCALING 1
+Info: HOM BACKGROUND SCALING 1
+Info: MIN ATOMS PER PATCH    40
+Info: INITIAL TEMPERATURE    30
+Info: CENTER OF MASS MOVING INITIALLY? NO
+Info: DIELECTRIC             1
+Info: EXCLUDE                SCALED ONE-FOUR
+Info: 1-4 ELECTROSTATICS SCALED BY 1
+Info: MODIFIED 1-4 VDW PARAMETERS WILL BE USED
+Info: DCD FILENAME           mminter-mmjob-namd.out.dcd
+Info: DCD FREQUENCY          1
+Info: DCD FIRST STEP         1
+Info: XST FILENAME           mminter-mmjob-namd.out.xst
+Info: XST FREQUENCY          1
+Info: NO VELOCITY DCD OUTPUT
+Info: NO FORCE DCD OUTPUT
+Info: OUTPUT FILENAME        mminter-mmjob-namd.out
+Info: BINARY OUTPUT FILES WILL BE USED
+Info: RESTART FILENAME       mminter-mmjob-namd.out.restart
+Info: RESTART FREQUENCY      100
+Info: BINARY RESTART FILES WILL BE USED
+Info: SWITCHING ACTIVE
+Info: VDW FORCE SWITCHING ACTIVE
+Info: SWITCHING ON           10
+Info: SWITCHING OFF          12
+Info: PAIRLIST DISTANCE      14
+Info: PAIRLIST SHRINK RATE   0.01
+Info: PAIRLIST GROW RATE     0.01
+Info: PAIRLIST TRIGGER       0.3
+Info: PAIRLISTS PER CYCLE    2
+Info: PAIRLISTS ENABLED
+Info: MARGIN                 0
+Info: HYDROGEN GROUP CUTOFF  2.5
+Info: PATCH DIMENSION        16.5
+Info: CROSSTERM ENERGY INCLUDED IN DIHEDRAL
+Info: TIMING OUTPUT STEPS    10
+Info: TCL GLOBAL FORCES ACTIVE
+Info: TCL GLOBAL FORCES SCRIPT INLINED IN CONFIG FILE
+Info: USING VERLET I (r-RESPA) MTS SCHEME.
+Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
+Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
+Info: RANDOM NUMBER SEED     1542115962
+Info: USE HYDROGEN BONDS?    NO
+Info: COORDINATE PDB         random.pdb
+Info: STRUCTURE FILE         qmmm-wat2.psf
+Info: PARAMETER file: CHARMM format! 
+Info: PARAMETERS             ions.prm
+Info: PARAMETERS             newtypes.prm
+Info: USING ARITHMETIC MEAN TO COMBINE L-J SIGMA PARAMETERS
+Info: BINARY COORDINATES     zonkey.bin.coor
+Info: SUMMARY OF PARAMETERS:
+Info: 3 BONDS
+Info: 1 ANGLES
+Info: 0 DIHEDRAL
+Info: 0 IMPROPER
+Info: 0 CROSSTERM
+Info: 20 VDW
+Info: 7 VDW_PAIRS
+Info: 0 NBTHOLE_PAIRS
+Warning: Ignored 1 bonds with zero force constants.
+Warning: Will get H-H distance in rigid H2O from H-O-H angle.
+Info: TIME FOR READING PSF FILE: 8.70228e-05
+Info: Reading pdb file random.pdb
+Info: TIME FOR READING PDB FILE: 2.5034e-05
+Info: 
+Info: ****************************
+Info: STRUCTURE SUMMARY:
+Info: 6 ATOMS
+Info: 2 BONDS
+Info: 1 ANGLES
+Info: 0 DIHEDRALS
+Info: 0 IMPROPERS
+Info: 0 CROSSTERMS
+Info: 0 EXCLUSIONS
+Info: 15 DEGREES OF FREEDOM
+Info: 4 HYDROGEN GROUPS
+Info: 3 ATOMS IN LARGEST HYDROGEN GROUP
+Info: 4 MIGRATION GROUPS
+Info: 3 ATOMS IN LARGEST MIGRATION GROUP
+Info: TOTAL MASS = 36.0308 amu
+Info: TOTAL CHARGE = 0 e
+Info: *****************************
+Info: Reading from binary file zonkey.bin.coor
+Info: 
+Info: Entering startup at 0.00565195 s, 58.7578 MB of memory in use
+Info: Startup phase 0 took 3.29018e-05 s, 58.7578 MB of memory in use
+Info: ADDED 3 IMPLICIT EXCLUSIONS
+Info: Startup phase 1 took 4.91142e-05 s, 58.7578 MB of memory in use
+Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
+Info: NONBONDED TABLE SIZE: 769 POINTS
+Info: ABSOLUTE IMPRECISION IN FAST TABLE ENERGY: 2.53117e-21 AT 11.9974
+Info: RELATIVE IMPRECISION IN FAST TABLE ENERGY: 1.68907e-16 AT 11.9974
+Info: INCONSISTENCY IN FAST TABLE ENERGY VS FORCE: 0.000290274 AT 0.251946
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE ENERGY: 9.6778e-33 AT 11.9974
+Info: RELATIVE IMPRECISION IN VDWA TABLE ENERGY: 3.71539e-17 AT 11.9974
+Info: INCONSISTENCY IN VDWA TABLE ENERGY VS FORCE: 0.0040507 AT 0.251946
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE ENERGY: 9.34011e-27 AT 11.9974
+Info: RELATIVE IMPRECISION IN VDWB TABLE ENERGY: 2.98256e-17 AT 11.9974
+Info: INCONSISTENCY IN VDWB TABLE ENERGY VS FORCE: 0.00150189 AT 0.251946
+Info: Startup phase 2 took 0.000355959 s, 59.1836 MB of memory in use
+Info: Startup phase 3 took 1.78814e-05 s, 59.1836 MB of memory in use
+Info: Startup phase 4 took 1.62125e-05 s, 59.1836 MB of memory in use
+Info: Startup phase 5 took 1.38283e-05 s, 59.1836 MB of memory in use
+Info: ORIGINAL ATOMS MINMAX IS -0.976 -0.143 -0.67  1.788 0.945 0.757
+Info: ADJUSTED ATOMS MINMAX IS -1.3215 -0.279 -0.848375  2.1335 1.081 0.935375
+Info: PATCH GRID IS 1 BY 1 BY 1
+Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
+Info: REMOVING COM VELOCITY -0.789948 -1.16164 -0.739925
+Info: LARGEST PATCH (0) HAS 6 ATOMS
+Info: TORUS A SIZE 1 USING 0
+Info: TORUS B SIZE 1 USING 0
+Info: TORUS C SIZE 1 USING 0
+Info: TORUS MINIMAL MESH SIZE IS 1 BY 1 BY 1
+Info: Placed 100% of base nodes on same physical node as patch
+Info: Startup phase 6 took 9.01222e-05 s, 59.1836 MB of memory in use
+Info: Startup phase 7 took 2.19345e-05 s, 59.1836 MB of memory in use
+Info: Startup phase 8 took 1.50204e-05 s, 59.1836 MB of memory in use
+LDB: Central LB being created...
+Info: Startup phase 9 took 2.28882e-05 s, 59.1836 MB of memory in use
+Info: CREATING 12 COMPUTE OBJECTS
+Info: Startup phase 10 took 0.000236988 s, 59.1836 MB of memory in use
+Info: Startup phase 11 took 2.71797e-05 s, 59.1836 MB of memory in use
+Info: Startup phase 12 took 2.7895e-05 s, 59.543 MB of memory in use
+Info: Finished startup at 0.00657988 s, 59.543 MB of memory in use
+
+TCL: Running for 1000 step1ETITLE:      TS           BOND        1 -8.11329796816 11.0328123536 9.00395807134
+2 -16.3819204849 -3.49107364606 -28.9546074402
+3 23.8086671623 -6.62552770957 21.8457279222
+4 5.40699875762 -0.055665168525 1.86575243957
+5 -3.29546105902 0.473153932462 -3.08844755916
+6 -1.42513909069 -1.33361004494 -0.672413080491
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG
+
+ENERGY:       0        28.8551         0.2095         0.0000         0.0000              0.0000         1.3429         0.0000         0.0000         0.6661             31.0737        44.6922        30.4076        32.0666        44.6922
+
+OPENING EXTENDED SYSTEM TRAJECTORY FILE
+LDB: ============= START OF LOAD BALANCING ============== 521.861
+LDB: ============== END OF LOAD BALANCING =============== 521.861
+LDB: =============== DONE WITH MIGRATION ================ 521.861
+                                                                                                                                                                       1 -9.85374620534 12.6877301432 9.86388308111
+2 -14.0931735289 -4.31245237788 -28.0408794918
+3 23.36288283751 -10.7517253182 12.2325046992 7.45563747562
+2 -12.9759360302 -5.19284421764 -28.0183029514
+3 23.1304011068 -6.13991215648 22.5482319789
+4 5.4690335723 -0.0661889317287 1.81 -7.9621572663 12.6015110286 12.1665364271
+2 -15.7251296838 -2.85398862181 -28.1623202889
+3 23.1043877735 -8.85936168778 17.9040129651
+4 5.33804041452 -0.0623117558116 1.76411504231
+5 -3.35984987336 0.50057110502 -3.0456601535
+6 -1.39522944791 -1.32640957538 -0.626717792896
+                                                                                                        1 -19.2752623556 21.9791965552 13.2275644052
+2 8.26275575452 -7.36332816315 16.3528858798
+3 -4.52302489014 -11.9572447079 -24.2305227699
+4 22.7504374585 0.364177595076 2.2595627363
+5 -4.58212958125 0.402533942543 -7.43102305695
+6 -2.63260244775 -3.42520798168 -0.178488562758
+LDB: ============= START OF LOAD BALANCING ============== 509.084
+LDB: ============== END OF LOAD BALANCING =============== 509.084
+LDB: =============== DONE WITH MIGRATION ================ 509.085
+OAD BALANCING ============== 10314.1
+LDB: ============== END OF LOAD BALANCING =============== 10314.1
+LDB: =============== DONE WITH MIGRATION ================ 10314.1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1 44.0018276751 -13.4145591751 32.8206699851
+2 -66.4143045664 30.4267332541 -33.6993773985
+3 21.5106011569 -16.4401174367 2.74672295713
+4 4.48090759569 0.108283984544 1.47831178899
+5 -2.44746729771 0.419288881328 -2.8612173563
+6 -1.13144301497 -1.09973325479 -0.485200871919
+6513283542 -1.21 -8.11329796816 11.0328123536 9.00395807134
+2 -16.3819204849 -3.49107364606 -28.9546074402
+3 23.8086671623 -6.62552770957 21.8457279222
+4 5.40699875762 -0.055665168525 1.86575243957
+5 -3.29546105902 0.473153932462 -3.08844755916
+6 -1.42513909069 -1.33361004494 -0.672413080491
+71493 1.0339609842129336 -1.038796124728833
+-0.9837654800191034 -0.02441211130293187 -0.1144591182365846
+                                                                                                                                                1 -8.11329796816 11.0328123536 9.00395807134
+2 -16.3819204849 -3.49107364606 -28.9546074402
+3 23.8086671623 -6.62552770957 21.8457279222
+4 5.40699875762 -0.055665168525 1.86575243957
+5 -3.29546105902 0.473153932462 -3.08844755916
+6 -1.42513909069 -1.33361004494 -0.672413080491
+LDB: ============= START OF LOAD BALANCING ============== 14650.3
+LDB: ============== END OF LOAD BALANCING =============== 14650.3
+LDB: =============== DONE WITH MIGRATION ================ 14650.3
+                              1 -10.7517253182 12.2325046992 7.45563747562
+2 -12.9759360302 -5.19284421764 -28.0183029514
+3 23.1304011068 -6.13991215648 22.5482319789
+4 5.4690335723 -0.0661889317287 1.84055079611
+5 -3.45982562379 0.492124400343 -3.17374542934
+6 -1.41212285726 -1.32557875196 -0.652473318631
+Info: Initial time: 1 CPUs 101.05 s/step 1169.56 days/ns 59.543 MB memory
+ENERGY:      10         0.0000         0.0000         0.0000         0.0000              0.0000         1.4146         0.0000         0.0000        28.3968             29.8113      2381.6499         1.4146        29.8302       899.4566
+
+OPENING COORDINATE DCD FILE
+WRITING COORDINATES TO DCD FILE mminter-mmjob-namd.out.dcd AT STEP 10

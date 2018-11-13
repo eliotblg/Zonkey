@@ -58,7 +58,7 @@ if system.nqmatoms > 0 and system.nmmatoms > 0:
 optimizer = Geopt(method)
 #optimizer.setoptimizer(system.nactives)
 #optimizer.optimize(system)
-optimizer.steepestd(system)
-
+#optimizer.steepestd(system)
+optimizer.newtonraphson(system)
 #method.clean()
 

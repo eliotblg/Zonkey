@@ -45,11 +45,24 @@ class QMMMinterface(object):
         f.close()
         mmijob = self.mm.interactive(system)
         while True:
+            #TODO has to kill itself once waited for very too long
             time.sleep(0.1)
             f = open("INTERACTIVE", "r")
             w = f.readline()
             f.close()
             if w[0:2] == "QM":
+                # update system coordinates for QM computations
+                # intcoords.txt file is printed by the interactive MM module 
+                # TODO MM module has to handle the convertion factor 
+                with open("intcoords.txt") as fp:
+                    try:
+                        for i, line in enumerate(fp):
+                            l = line.rstrip().split()
+                            system.coords[i] = np.array([float(l[0])*ANG2BOHR, \
+                                    float(l[1])*ANG2BOHR, float(l[2])*ANG2BOHR])
+                        print(system.coords)
+                    except:
+                        print('Cannot read coordinates from MM interactive module.\n')
                 self.eqm, gqm = self.qm.gradients(system)
                 f = open("qmgradients.txt", "w")
                 # convert gradients to forces in NAMD units (to change if other code used)

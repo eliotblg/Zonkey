@@ -4,9 +4,9 @@ nmmproc 1
  
 memory 4
 
-#coordinates random.pdb 
+coordinates random.pdb 
 
-coordinates opt.pdb
+#coordinates opt.pdb
 
 #qmlist [ 0, 1, 2 , 3, 4, 5 ] 
 #mmlist [ 0, 1, 2 , 3, 4, 5 ]

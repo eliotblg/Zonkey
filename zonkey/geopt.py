@@ -19,7 +19,9 @@ class Geopt(object):
         print('*** Geometry optimization with ' + self.algorithm + \
               ' | Step: ' + str(self.nstep) + '/' + str(self.opt.get_maxeval()))  
 
+        # build the coordinates x, used for minimisation into coords data structure        
         self.setcoordinates(self.c, x)
+
         # if gradient optimization (normaly the case)
         if grad.size > 0:
             e, fullgrad = self.ofunction.gradients(self.c)
@@ -115,9 +117,29 @@ class Geopt(object):
         return np.mean(t), np.amax(t)  
 
     # simple steepest (gradient) descend just for testing
-    def steepestd(self, coords, step = 0.1, maxeval = 200):
+    def steepestd(self, coords, step = 0.5, maxeval = 200):
         self.c = coords
-        pc = coords.coords
+        c = coords.coords
+        de = 1E9
+        pe = 1E9
+        for i in range(maxeval):
+            self.c.coords = c
+            e, g = self.ofunction.gradients(self.c)
+            de = e - pe
+            pe = e
+            print('Energy and DE at step ' + str(i+1) + ': ' + str(e) +' \ ' + str(de) )
+            gmad, gmax = self.getmadmaxgrad(np.ravel(g))
+            print('Gradient components, MAD / MAX: ' + str(gmad) + ' \ ' + str(gmax))
+            if abs(de) < 1.0E-8:
+                print('Converged after ' + str(i+1) + ' steepest descent steps\n')
+                break
+            c = c - step * g           
+            printfile.printxyz(c, coords.atypes, self.histfile, append = True)
+            pe = e
+
+    def newtonraphson(self, coords, maxeval=200):
+        self.c = coords
+        pc = coords.coords 
         de = 1E9
         pe = 1E9
         for i in range(maxeval):
@@ -126,28 +148,20 @@ class Geopt(object):
             de = e - pe
             pe = e
             print('Energy and DE at step ' + str(i+1) + ': ' + str(e) +' \ ' + str(de) )
+            gmad, gmax = self.getmadmaxgrad(np.ravel(g))
+            print('Gradient components, MAD / MAX: ' + str(gmad) + ' \ ' + str(gmax))
             if abs(de) < 1.0E-8:
                 print('Converged after ' + str(i+1) + ' steepest descent steps\n')
                 break
-            c = pc - step * g           
-#            if i > 0: 
-#                dg = np.ravel(g-pg)
-#                #ndg = np.sum(np.absolute(dg))
-#                ndg = np.linalg.norm(dg)
-#                #print(dg)
-#                #print(np.transpose(np.array(np.ravel(c-pc))))
-#                step = np.matmul(np.transpose(np.ravel(c - pc)), dg) / (ndg*ndg)
-#                print('step size corrected to: ' + str(step))
+            if i < 3:
+                c = pc - 0.2*g
+            else:
+                c = pc - g / ((g-pg)/(pc-ppc))    
             printfile.printxyz(c, coords.atypes, self.histfile, append = True)
-            pc = c
-            pe = e
-            pg = g 
-            
-
-
-
-
-
+            pe = e   
+            pg = g
+            ppc = pc
+            pc = c         
 
 
 
